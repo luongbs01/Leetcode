@@ -14,6 +14,7 @@ public class DailyTemperatures {
         Stack<Map.Entry<Integer, Integer>> stack = new Stack<>();
         stack.push(Map.entry(temperatures[length - 1], length - 1));
         for (int i = length - 2; i >= 0; i--) {
+            // mono decreasing stack => find nearest element that is greater than current element
             while (!stack.isEmpty() && temperatures[i] >= stack.peek().getKey()) {
                 stack.pop();
             }

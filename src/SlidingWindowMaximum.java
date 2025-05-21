@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.TreeMap;
 
 /**
@@ -22,6 +24,26 @@ public class SlidingWindowMaximum {
                 treeMap.put(nums[i - k], treeMap.get(nums[i - k]) - 1);
             } else {
                 treeMap.remove(nums[i - k]);
+            }
+        }
+        return ans;
+    }
+
+    // Refer to https://wiki.vnoi.info/algo/data-structures/deque-min-max
+    public int[] maxSlidingWindowV2(int[] nums, int k) {
+        int length = nums.length;
+        int[] ans = new int[length - k + 1];
+        Deque<Integer> deque = new ArrayDeque<>();
+        for (int i = 0; i < length; i++) {
+            while (!deque.isEmpty() && deque.peek() <= i - k) {
+                deque.poll();
+            }
+            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i]) { // mono decreasing queue
+                deque.pollLast();
+            }
+            deque.offer(i);
+            if (i >= k - 1) {
+                ans[i - k + 1] = nums[deque.peek()];
             }
         }
         return ans;

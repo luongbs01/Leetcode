@@ -74,6 +74,7 @@ public class GenerateParentheses {
         return stack.isEmpty();
     }
 
+    // Refer to https://wiki.vnoi.info/algo/data-structures/Stack
     // 4ms ---> 2ms
     private void generateV3(int i, String s, int open, int close) {
         if (i == n * 2) {
