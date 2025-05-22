@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,6 +28,25 @@ public class Subsets {
                 flag[i] = j;
                 backtrack(i + 1, flag, nums, ans);
             }
+        }
+    }
+
+    List<List<Integer>> ans;
+
+    public List<List<Integer>> subsetsV2(int[] nums) {
+        ans = new ArrayList<>();
+        backtrack(0, new LinkedList<>(), nums);
+        return ans;
+    }
+
+    private void backtrack(int i, LinkedList<Integer> list, int[] nums) {
+        if (i == nums.length) {
+            ans.add(new LinkedList<>(list));
+        } else {
+            backtrack(i + 1, list, nums);
+            list.add(nums[i]);
+            backtrack(i + 1, list, nums);
+            list.removeLast();
         }
     }
 }
