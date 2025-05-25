@@ -33,4 +33,36 @@ public class ReorderList {
             tail.next = null;
         }
     }
+
+    public void reorderListV2(ListNode head) {
+        if (head.next == null) {
+            return;
+        }
+        ListNode slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        // reverse list from mid to tail
+        ListNode curr = slow.next;
+        ListNode pre = null;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        slow.next = null;
+        // merge 2 linked lists
+        ListNode headPtr = head;
+        ListNode tail = pre;
+        while (tail != null) {
+            ListNode nextTail = tail.next;
+            ListNode nextHead = headPtr.next;
+            headPtr.next = tail;
+            tail.next = nextHead;
+            tail = nextTail;
+            headPtr = nextHead;
+        }
+    }
 }
