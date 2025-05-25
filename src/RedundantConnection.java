@@ -50,4 +50,49 @@ public class RedundantConnection {
         }
         return new int[0];
     }
+
+    int[] parent;
+    int[] rank;
+
+    public int[] findRedundantConnectionV2(int[][] edges) {
+        int v = edges.length;
+        parent = new int[v + 1];
+        rank = new int[v + 1];
+        for (int i = 1; i <= v; i++) {
+            parent[i] = i;
+        }
+        for (int[] edge : edges) {
+            if (!union(edge[0], edge[1])) {
+                return edge;
+            }
+        }
+        return new int[0];
+    }
+
+    private int find(int v) {
+        if (v == parent[v]) {
+            return v;
+        }
+        int p = find(parent[v]);
+        parent[v] = p;
+        return p;
+    }
+
+    private boolean union(int u, int v) {
+        int pU = find(u);
+        int pV = find(v);
+        if (pU == pV) {
+            return false;
+        }
+        if (pU < pV) {
+            int temp = pU;
+            pU = pV;
+            pV = temp;
+        }
+        parent[pV] = pU;
+        if (rank[pU] == rank[pV]) {
+            rank[pU]++;
+        }
+        return true;
+    }
 }

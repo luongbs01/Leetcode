@@ -20,15 +20,16 @@ public class ReverseLinkedList {
         return head;
     }
 
+    // 3 nodes: previous, current, next
     public ListNode reverseListV2(ListNode head) {
         ListNode prev = null;
-        ListNode ptr = head;
+        ListNode curr = head;
 
-        while (ptr != null) {
-            ListNode nextPtr = ptr.next;
-            ptr.next = prev;
-            prev = ptr;
-            ptr = nextPtr;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
         return prev;
     }
