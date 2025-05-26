@@ -3,7 +3,7 @@ import java.util.Deque;
 import java.util.HashMap;
 
 /**
- * Description: https://leetcode.com/problems/find-the-duplicate-number/description/
+ * Description: https://leetcode.com/problems/lru-cache/
  */
 
 public class LRUCache {
