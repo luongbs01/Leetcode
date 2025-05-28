@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Description: https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/
+ * Description: https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/description/
  */
 
 public class LongestArithmeticSubsequenceOfGivenDifference {
@@ -25,6 +25,17 @@ public class LongestArithmeticSubsequenceOfGivenDifference {
                     ans = Math.max(ans, dp[i]);
                 }
             }
+        }
+        return ans;
+    }
+
+    public int longestSubsequenceV2(int[] arr, int difference) {
+        int ans = 1;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) {
+            int newValue = map.getOrDefault(i - difference, 0) + 1;
+            map.put(i, newValue);
+            ans = Math.max(ans, newValue);
         }
         return ans;
     }

@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class NabEvenTimeCharacter {
 
     // O(N^2) time
@@ -22,8 +25,27 @@ public class NabEvenTimeCharacter {
         return ans;
     }
 
+    // O(N) time
+    public int solutionV2(String s) {
+        int length = s.length();
+        char[] chars = s.toCharArray();
+        int ans = 0;
+        int mask = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 0);
+        for (int i = 0; i < length; i++) {
+            mask ^= 1 << (chars[i] - 'a');
+            if (!map.containsKey(mask)) {
+                map.put(mask, i + 1);
+            }
+            ans = Math.max(ans, i + 1 - map.get(mask));
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         NabEvenTimeCharacter nabEvenTimeCharacter = new NabEvenTimeCharacter();
         System.out.println(nabEvenTimeCharacter.solution("zthtzh"));
+        System.out.println(nabEvenTimeCharacter.solutionV2("zthtzh"));
     }
 }
