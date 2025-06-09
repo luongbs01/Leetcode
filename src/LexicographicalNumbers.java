@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Description: https://leetcode.com/problems/lexicographical-numbers/description/
+ */
+
 public class LexicographicalNumbers {
 
     List<Integer> ans;
