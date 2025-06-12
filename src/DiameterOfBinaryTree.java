@@ -44,4 +44,19 @@ public class DiameterOfBinaryTree {
         }
         return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
+
+    int ans = 0;
+
+    public int diameterOfBinaryTreeV2(TreeNode root) {
+        if (root == null) return 0;
+        height(root);
+        return ans;
+    }
+
+    private int height(TreeNode node) {
+        int leftHeight = node.left != null ? height(node.left) + 1 : 0;
+        int rightHeight = node.right != null ? height(node.right) + 1 : 0;
+        ans = Math.max(ans, leftHeight + rightHeight);
+        return Math.max(leftHeight, rightHeight);
+    }
 }
