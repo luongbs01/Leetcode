@@ -2,7 +2,6 @@
  * Description: https://leetcode.com/problems/longest-subsequence-repeated-k-times/description/
  */
 
-
 public class LongestSubsequenceRepeatedKTimes {
 
     int n;
