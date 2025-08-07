@@ -1,5 +1,5 @@
 /**
- * Description: https://leetcode.com/problems/rearranging-fruits/description/
+ * Description: https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/description/
  */
 
 public class MaximumFruitsHarvestedAfterAtMostKSteps {
