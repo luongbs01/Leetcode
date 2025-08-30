@@ -30,4 +30,22 @@ public class ValidSudoku {
         }
         return true;
     }
+
+    public boolean isValidSudokuV2(char[][] board) {
+        boolean[][][] marked = new boolean[3][9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char c = board[i][j];
+                if (c != '.') {
+                    if (marked[0][i][c - '1'] || marked[1][j][c - '1'] || marked[2][(i / 3) * 3 + (j / 3)][c - '1']) {
+                        return false;
+                    }
+                    marked[0][i][c - '1'] = true;
+                    marked[1][j][c - '1'] = true;
+                    marked[2][(i / 3) * 3 + (j / 3)][c - '1'] = true;
+                }
+            }
+        }
+        return true;
+    }
 }
