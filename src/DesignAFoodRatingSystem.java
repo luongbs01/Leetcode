@@ -2,6 +2,10 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+/**
+ * Description: https://leetcode.com/problems/design-a-food-rating-system/description/
+ */
+
 public class DesignAFoodRatingSystem {
 
     class FoodRatings {
