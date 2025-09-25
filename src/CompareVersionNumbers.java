@@ -2,7 +2,6 @@
  * Description: https://leetcode.com/problems/compare-version-numbers/description/
  */
 
-
 public class CompareVersionNumbers {
 
     public int compareVersion(String version1, String version2) {
