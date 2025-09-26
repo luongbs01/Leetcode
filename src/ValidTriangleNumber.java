@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class ValidTriangleNumber {
 
+    // 77 ms
     public int triangleNumber(int[] nums) {
         int n = nums.length;
         int ans = 0;
@@ -23,6 +24,23 @@ public class ValidTriangleNumber {
                     }
                 }
                 ans += (n - l);
+            }
+        }
+        return ans;
+    }
+
+    // 25 ms
+    public int triangleNumberV2(int[] nums) {
+        int n = nums.length;
+        int ans = 0;
+        Arrays.sort(nums);
+        for (int i = 0; i < n - 2; i++) {
+            int r = n - 1;
+            for (int j = n - 2; j > i; j--) {
+                while (nums[i] + nums[j] <= nums[r] && r > j) {
+                    r--;
+                }
+                ans += (r - j);
             }
         }
         return ans;
