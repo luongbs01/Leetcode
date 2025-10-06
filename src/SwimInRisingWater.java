@@ -11,11 +11,16 @@ public class SwimInRisingWater {
 
     public int swimInWater(int[][] grid) {
         n = grid.length;
-        int ans = grid[0][0];
-        while (!bfs(ans, grid)) {
-            ans++;
+        int l = grid[0][0], r = n * n - 1;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (bfs(mid, grid)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
         }
-        return ans;
+        return l;
     }
 
     private boolean bfs(int maxTime, int[][] grid) {
@@ -31,9 +36,6 @@ public class SwimInRisingWater {
                 if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < n
                         && !visited[nextX][nextY] && grid[nextX][nextY] <= maxTime) {
                     visited[nextX][nextY] = true;
-                    if (visited[n - 1][n - 1]) {
-                        return true;
-                    }
                     queue.offer(new int[]{nextX, nextY});
                 }
             }
