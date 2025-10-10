@@ -1,3 +1,7 @@
+/**
+ * Description: https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/description/
+ */
+
 public class FindTheMinimumAmountOfTimeToBrewPotions {
 
     public long minTime(int[] skill, int[] mana) {
