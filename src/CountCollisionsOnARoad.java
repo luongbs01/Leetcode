@@ -6,6 +6,7 @@ import java.util.ArrayDeque;
 
 public class CountCollisionsOnARoad {
 
+    // 35ms
     public int countCollisions(String directions) {
         int ans = 0;
         char[] chars = directions.toCharArray();
@@ -33,6 +34,24 @@ public class CountCollisionsOnARoad {
                 }
             }
 
+        }
+        return ans;
+    }
+
+    // 9ms
+    public int countCollisionsV2(String directions) {
+        int n = directions.length(), ans = 0, left = 0, right = n - 1;
+        char[] chars = directions.toCharArray();
+        while (left < n && chars[left] == 'L') {
+            left++;
+        }
+        while (right >= 0 && chars[right] == 'R') {
+            right--;
+        }
+        for (int i = left; i <= right; i++) {
+            if (chars[i] != 'S') {
+                ans++;
+            }
         }
         return ans;
     }
