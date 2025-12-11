@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class CountCoveredBuildings {
 
+    // 439ms
     public int countCoveredBuildings(int n, int[][] buildings) {
         int len = buildings.length;
         if (buildings.length < 5) return 0;
@@ -27,5 +28,29 @@ public class CountCoveredBuildings {
         }
         set1.retainAll(set2);
         return set1.size();
+    }
+
+    // 13ms
+    public int countCoveredBuildingsV2(int n, int[][] buildings) {
+        int[] xMax = new int[n + 1], xMin = new int[n + 1], yMax = new int[n + 1], yMin = new int[n + 1];
+        Arrays.fill(xMin, n + 1);
+        Arrays.fill(yMin, n + 1);
+        for (int[] building : buildings) {
+            int x = building[0];
+            int y = building[1];
+            xMax[x] = Math.max(xMax[x], y);
+            xMin[x] = Math.min(xMin[x], y);
+            yMax[y] = Math.max(yMax[y], x);
+            yMin[y] = Math.min(yMin[y], x);
+        }
+        int ans = 0;
+        for (int[] building : buildings) {
+            int x = building[0];
+            int y = building[1];
+            if (y > xMin[x] && y < xMax[x] && x > yMin[y] && x < yMax[y]) {
+                ans++;
+            }
+        }
+        return ans;
     }
 }
