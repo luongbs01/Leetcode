@@ -1,3 +1,7 @@
+/**
+ * Description: https://leetcode.com/problems/n-repeated-element-in-size-2n-array/description/
+ */
+
 public class NRepeatedElementInSize2NArray {
 
 	public int repeatedNTimes(int[] nums) {
