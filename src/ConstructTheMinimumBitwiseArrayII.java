@@ -1,0 +1,27 @@
+import java.util.List;
+
+/**
+ * Description: https://leetcode.com/problems/construct-the-minimum-bitwise-array-ii/
+ */
+
+public class ConstructTheMinimumBitwiseArrayII {
+
+	public int[] minBitwiseArray(List<Integer> nums) {
+		int n = nums.size();
+		int[] ans = new int[n];
+		for (int i = 0; i < n; i++) {
+			ans[i] = findMinOr(nums.get(i));
+		}
+		return ans;
+	}
+
+	private int findMinOr(int num) {
+		if (num == 2)
+			return -1;
+		int i = 0;
+		while ((num & (1 << i)) != 0) {
+			i++;
+		}
+		return num ^ (1 << (i - 1));
+	}
+}
