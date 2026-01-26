@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * Description: https://leetcode.com/problems/minimum-pair-removal-to-sort-array-ii/
+ * Description: https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/description/
  */
 
 public class MinimumDifferenceBetweenHighestAndLowestOfKScores {
