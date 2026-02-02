@@ -1,5 +1,3 @@
-import java.util.PriorityQueue;
-
 /**
  * Description: https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-i/
  */
