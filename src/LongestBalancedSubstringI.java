@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * Description: https://leetcode.com/problems/longest-balanced-subarray-i/
+ * Description: https://leetcode.com/problems/longest-balanced-substring-i/description/
  */
 
 public class LongestBalancedSubstringI {
