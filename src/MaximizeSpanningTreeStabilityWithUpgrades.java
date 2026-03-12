@@ -8,15 +8,15 @@ import java.util.List;
 
 public class MaximizeSpanningTreeStabilityWithUpgrades {
 
-	int[] rank, size, originalRank, originalSize;
+	int[] parent, size, originalParent, originalSize;
 
 	public int maxStability(int n, int[][] edges, int k) {
-		rank = new int[n];
+		parent = new int[n];
 		size = new int[n];
-		originalRank = new int[n];
+		originalParent = new int[n];
 		originalSize = new int[n];
 		for (int i = 0; i < n; i++) {
-			rank[i] = i;
+			parent[i] = i;
 			size[i] = 1;
 		}
 		int min = 200_000;
@@ -33,7 +33,7 @@ public class MaximizeSpanningTreeStabilityWithUpgrades {
 		}
 		list.sort(Comparator.comparingInt(o -> -o[2]));
 		int l = 0, r = min;
-		System.arraycopy(rank, 0, originalRank, 0, n);
+		System.arraycopy(parent, 0, originalParent, 0, n);
 		System.arraycopy(size, 0, originalSize, 0, n);
 
 		while (l < r) {
@@ -43,7 +43,7 @@ public class MaximizeSpanningTreeStabilityWithUpgrades {
 			} else {
 				r = mid - 1;
 			}
-			System.arraycopy(originalRank, 0, rank, 0, n);
+			System.arraycopy(originalParent, 0, parent, 0, n);
 			System.arraycopy(originalSize, 0, size, 0, n);
 		}
 		return l > 0 ? l : -1;
@@ -61,11 +61,11 @@ public class MaximizeSpanningTreeStabilityWithUpgrades {
 	}
 
 	private int find(int u) {
-		if (rank[u] == u) {
+		if (parent[u] == u) {
 			return u;
 		}
-		int pU = find(rank[u]);
-		rank[u] = pU;
+		int pU = find(parent[u]);
+		parent[u] = pU;
 		return pU;
 	}
 
@@ -80,7 +80,7 @@ public class MaximizeSpanningTreeStabilityWithUpgrades {
 			pU = pV;
 			pV = temp;
 		}
-		rank[pV] = pU;
+		parent[pV] = pU;
 		size[pU] += size[pV];
 		return true;
 	}
