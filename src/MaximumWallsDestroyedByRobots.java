@@ -13,8 +13,9 @@ public class MaximumWallsDestroyedByRobots {
 		int n = robots.length, samePos = 0;
 		int[] cntLeft = new int[n];
 		int[] cntRight = new int[n];
-		int[] intersect = new int[n];
+		int[] overlap = new int[n];
 		int[][] dp = new int[n][2];
+
 		HashMap<Integer, Integer> dist = new HashMap<>();
 		Set<Integer> set = new HashSet<>();
 		for (int wall : walls) {
@@ -34,17 +35,19 @@ public class MaximumWallsDestroyedByRobots {
 			walls[index++] = i;
 		}
 		Arrays.sort(walls);
+
 		for (int i = 0; i < n; i++) {
 			cntLeft[i] = binarySearch(walls, Math.max(i > 0 ? robots[i - 1] : 0, robots[i] - dist.get(robots[i])), robots[i]);
 			cntRight[i] = binarySearch(walls, robots[i], Math.min(i < n - 1 ? robots[i + 1] : Integer.MAX_VALUE, robots[i] + dist.get(robots[i])));
-			intersect[i] = i < n - 1 ?
+			overlap[i] = i < n - 1 ?
 				binarySearch(walls, Math.max(robots[i], robots[i + 1] - dist.get(robots[i + 1])), Math.min(robots[i] + dist.get(robots[i]), robots[i + 1])) :
 				0;
 		}
+
 		dp[0][0] = cntLeft[0];
 		dp[0][1] = cntRight[0];
 		for (int i = 1; i < n; i++) {
-			dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - intersect[i - 1]) + cntLeft[i];
+			dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - overlap[i - 1]) + cntLeft[i];
 			dp[i][1] = Math.max(dp[i - 1][0], dp[i - 1][1]) + cntRight[i];
 		}
 		return Math.max(dp[n - 1][0], dp[n - 1][1]) + samePos;
