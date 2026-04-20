@@ -15,4 +15,14 @@ public class TwoFurthestHousesWithDifferentColors {
 		}
 		return ans;
 	}
+
+	public int maxDistanceV2(int[] colors) {
+		int n = colors.length;
+		for (int i = 0; i < n; i++) {
+			if (colors[0] != colors[n - 1 - i] || colors[n - 1] != colors[i]) {
+				return n - 1 - i;
+			}
+		}
+		return 0;
+	}
 }
