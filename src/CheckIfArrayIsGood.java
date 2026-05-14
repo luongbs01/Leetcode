@@ -7,19 +7,15 @@ import java.util.Set;
 
 public class CheckIfArrayIsGood {
 
-    public boolean isGood(int[] nums) {
-        int n = nums.length;
-        Set<Integer> set = new HashSet<>();
-        int max = Integer.MIN_VALUE;
-        for (int num : nums) {
-            max = Math.max(max, num);
-            if (num < n - 1) {
-                if (set.contains(num)) {
-                    return false;
-                }
-                set.add(num);
-            }
-        }
-        return set.size() == n - 2 && max == n - 1;
-    }
+	public boolean isGood(int[] nums) {
+		int n = nums.length;
+		Set<Integer> set = new HashSet<>();
+		for (int num : nums) {
+			if (num >= n || (num < n - 1 && set.contains(num))) {
+				return false;
+			}
+			set.add(num);
+		}
+		return set.size() == n - 1;
+	}
 }
