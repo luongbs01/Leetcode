@@ -18,4 +18,22 @@ public class FindThePrefixCommonArrayOfTwoArrays {
         }
         return ans;
     }
+
+	public int[] findThePrefixCommonArrayV2(int[] A, int[] B) {
+		int n = A.length, total = 0;
+		int[] ans = new int[n];
+		int[] cnt = new int[n + 1];
+		for (int i = 0; i < n; i++) {
+			cnt[A[i]]++;
+			if (cnt[A[i]] == 2) {
+				total++;
+			}
+			cnt[B[i]]++;
+			if (cnt[B[i]] == 2) {
+				total++;
+			}
+			ans[i] = total;
+		}
+		return ans;
+	}
 }
