@@ -6,8 +6,8 @@ public class MaximumAlternatingSubsequenceSum {
 
 	public long maxAlternatingSum(int[] nums) {
 		int n = nums.length;
-		// dp[i][0]: maximun sum of subsequence of array[0..i], subsequence has even elements
-		// dp[i][1]: maximun sum of subsequence of array[0..i], subsequence has odd elements
+		// dp[i][0]: maximum sum of subsequence of array[0..i], subsequence has even elements
+		// dp[i][1]: maximum sum of subsequence of array[0..i], subsequence has odd elements
 		long[][] dp = new long[n][2];
 		dp[0][0] = 0;
 		dp[0][1] = nums[0];

@@ -6,8 +6,8 @@ public class LineGame {
 
 	public long bangSo(int[] nums) {
 		int n = nums.length;
-		// dp[i][0]: max to nums[i], picked even
-		// dp[i][1]: max to nums[i], picked odd
+		// dp[i][0]: maximum sum of subsequence of array[0..i], subsequence has even elements
+		// dp[i][1]: maximum sum of subsequence of array[0..i], subsequence has odd elements
 		long[][] dp = new long[n][2];
 		dp[0][0] = 0;
 		dp[0][1] = nums[0];
