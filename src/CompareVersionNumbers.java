@@ -16,6 +16,6 @@ public class CompareVersionNumbers {
             if (revision1 > revision2)
                 return 1;
         }
-
+        return 0;
     }
 }
