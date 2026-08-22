@@ -4,12 +4,12 @@
 
 public class RangeSumQueryMutable {
 
-	class NumArray {
+	class NumArrayV1 {
 
 		int[] seg;
 		int n;
 
-		public NumArray(int[] nums) {
+		public NumArrayV1(int[] nums) {
 			n = nums.length;
 			seg = new int[n << 2];
 			build(1, 0, n - 1, nums);
@@ -62,6 +62,49 @@ public class RangeSumQueryMutable {
 			}
 			if (mid + 1 <= right) {
 				sum += query(((p << 1) | 1), mid + 1, r, left, right);
+			}
+			return sum;
+		}
+	}
+
+	// Fenwick tree
+	class NumArray {
+
+		int n;
+		int[] nums;
+		int[] BIT; // Binary Indexed Tree, 1-based
+
+		public NumArray(int[] nums) {
+			n = nums.length;
+			this.nums = nums;
+			BIT = new int[n + 1];
+			for (int i = 0; i < n; i++) {
+				updateDiff(i + 1, nums[i]);
+			}
+		}
+
+		public void update(int index, int val) {
+			int diff = val - nums[index];
+			nums[index] = val;
+			updateDiff(index + 1, diff);
+		}
+
+		public int sumRange(int left, int right) {
+			return query(right + 1) - query(left);
+		}
+
+		private void updateDiff(int idx, int diff) {
+			while (idx <= n) {
+				BIT[idx] += diff;
+				idx += (idx & (-idx));
+			}
+		}
+
+		private int query(int idx) {
+			int sum = 0;
+			while (idx > 0) {
+				sum += BIT[idx];
+				idx -= (idx & (-idx));
 			}
 			return sum;
 		}
